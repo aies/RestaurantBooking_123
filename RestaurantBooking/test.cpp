@@ -4,6 +4,7 @@
 using namespace testing;
 
 class BookingItem : public Test {
+public:
 	tm getTime(int year, int mon, int day, int hour, int min) {
 		tm result = { 0, min, hour, day, mon -1, year - 1900, 0, 0, -1 };
 
@@ -14,15 +15,7 @@ class BookingItem : public Test {
 
 TEST_F(BookingItem, 예약은정시에만가능하다정시가아닌경우예약불가) {
 	//arange
-	tm notOnTheHour = { 0 };
-	notOnTheHour.tm_year = 2021 - 1900;
-	notOnTheHour.tm_mon = 03 - 1;
-	notOnTheHour.tm_mday = 26;
-	notOnTheHour.tm_hour = 9;
-	notOnTheHour.tm_min = 5;
-	notOnTheHour.tm_isdst = -1;
-	mktime(&notOnTheHour);
-
+	tm notOnTheHour = getTime(2021, 3, 26, 9, 5);
 	Customer customer{ "Fake name", "010-1234-5678" };
 	Schedule* schedule = new Schedule{notOnTheHour, 1, customer};
 	BookingScheduler bookingScheduler{ 3 };
@@ -38,15 +31,7 @@ TEST_F(BookingItem, 예약은정시에만가능하다정시가아닌경우예약불가) {
 
 TEST_F(BookingItem, 예약은정시에만가능하다정시인경우예약가능) {
 	//arange
-	tm onTheHour = { 0 };
-	onTheHour.tm_year = 2021 - 1900;
-	onTheHour.tm_mon = 03 - 1;
-	onTheHour.tm_mday = 26;
-	onTheHour.tm_hour = 9;
-	onTheHour.tm_min = 0;
-	onTheHour.tm_isdst = -1;
-	mktime(&onTheHour);
-
+	tm onTheHour = getTime(2021, 3, 26, 9, 0);
 	Customer customer{ "Fake name", "010-1234-5678" };
 	Schedule* schedule = new Schedule{ onTheHour, 1, customer };
 	BookingScheduler bookingScheduler{ 3 };
