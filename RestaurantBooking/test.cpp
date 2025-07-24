@@ -18,7 +18,7 @@ public:
 	}
 	tm NOT_ON_THE_HOUR;
 	tm ON_THE_HOUR;
-	Customer customer{ "Fake name", "010-1234-5678" };
+	Customer CUSTOMER{ "Fake name", "010-1234-5678" };
 	const int UNDER_CAPACITY = 1;
 	const int CAPACITY_PER_HOUR = 3;
 
@@ -27,7 +27,7 @@ public:
 
 TEST_F(BookingItem, 예약은정시에만가능하다정시가아닌경우예약불가) {
 	//arange
-	Schedule* schedule = new Schedule{NOT_ON_THE_HOUR, UNDER_CAPACITY, customer};
+	Schedule* schedule = new Schedule{NOT_ON_THE_HOUR, UNDER_CAPACITY, CUSTOMER};
 
 	//act
 	EXPECT_THROW({
@@ -40,7 +40,7 @@ TEST_F(BookingItem, 예약은정시에만가능하다정시가아닌경우예약불가) {
 
 TEST_F(BookingItem, 예약은정시에만가능하다정시인경우예약가능) {
 	//arange
-	Schedule* schedule = new Schedule{ ON_THE_HOUR, UNDER_CAPACITY, customer };
+	Schedule* schedule = new Schedule{ ON_THE_HOUR, UNDER_CAPACITY, CUSTOMER };
 
 	//act
 	bookingScheduler.addSchedule(schedule);
