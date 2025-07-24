@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="테스트파일">
+      <UniqueIdentifier>{5d37711f-55d7-479a-9219-7d28126cf46c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="booking_scheduler.cpp">
@@ -32,6 +35,9 @@
     </ClCompile>
     <ClCompile Include="test.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="testable_sms_sender.cpp">
+      <Filter>테스트파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
