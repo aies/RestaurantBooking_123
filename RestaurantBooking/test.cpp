@@ -1,7 +1,18 @@
 #include "gmock/gmock.h"
 #include "booking_scheduler.cpp"
 
-TEST(BookingSchedulerTest, 예약은정시에만가능하다정시가아닌경우예약불가) {
+using namespace testing;
+
+class BookingItem : public Test {
+	tm getTime(int year, int mon, int day, int hour, int min) {
+		tm result = { 0, min, hour, day, mon -1, year - 1900, 0, 0, -1 };
+
+		mktime(&result);
+		return result;
+	}
+};
+
+TEST_F(BookingItem, 예약은정시에만가능하다정시가아닌경우예약불가) {
 	//arange
 	tm notOnTheHour = { 0 };
 	notOnTheHour.tm_year = 2021 - 1900;
@@ -25,7 +36,7 @@ TEST(BookingSchedulerTest, 예약은정시에만가능하다정시가아닌경우예약불가) {
 	//expected runtime exception
 }
 
-TEST(BookingSchedulerTest, 예약은정시에만가능하다정시인경우예약가능) {
+TEST_F(BookingItem, 예약은정시에만가능하다정시인경우예약가능) {
 	//arange
 	tm onTheHour = { 0 };
 	onTheHour.tm_year = 2021 - 1900;
